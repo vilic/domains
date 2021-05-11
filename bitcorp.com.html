@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BitCorp.com</title>
+    <script
+      src="https://kit.fontawesome.com/ec16656391.js"
+      crossorigin="anonymous"
+    ></script>
+    <style>
+      @keyframes swing {
+        100% {
+          transform: rotate(-10deg);
+          transform-origin: 0% 100%;
+        }
+      }
+
+      html {
+        height: 100%;
+        background-color: orange;
+      }
+
+      body {
+        margin: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+      }
+
+      #matrix {
+        display: flex;
+        position: relative;
+      }
+
+      #matrix > div {
+        display: flex;
+        flex-direction: column;
+      }
+
+      #matrix > div > span.char {
+        text-align: center;
+        margin-bottom: 10px;
+        line-height: 20px;
+      }
+
+      #matrix > div > span.char.highlight {
+        color: white;
+        font-family: monospace;
+        font-size: 20px;
+      }
+
+      #matrix > div > span.char:not(.highlight) {
+        color: black;
+        opacity: 0.3;
+        font-family: monospace;
+        font-size: 16px;
+      }
+
+      #matrix > div > span.bit {
+        margin: 1px;
+        animation: swing ease-in-out 1s infinite alternate;
+      }
+
+      #matrix > div > span.bit-0 {
+        color: white;
+        opacity: 0.5;
+      }
+
+      #matrix > div > span.bit-1 {
+        color: black;
+        opacity: 0.3;
+        animation-delay: 0.2s;
+      }
+
+      #inquiry-link {
+        position: absolute;
+        left: calc(100% + 5px);
+        padding: 0 4px;
+        line-height: 20px;
+        border-radius: 4px;
+        font-family: sans-serif;
+        font-size: 12px;
+        background-color: black;
+        opacity: 0.3;
+        color: orange;
+        text-decoration: none;
+        transition: opacity linear 0.2s;
+      }
+
+      #inquiry-link:hover {
+        opacity: 0.5;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="matrix">
+      <a id="inquiry-link" href="mailto:vilicvane@live.com?subject=bitcorp.com"
+        >inquiry</a
+      >
+    </div>
+    <script type="module">
+      const DOMAIN = 'BitCorp.com';
+      const HIGHLIGHT_CHARS = 7;
+
+      let charEntries = Array.from(DOMAIN).map((char, index) => {
+        return {
+          highlight: index < HIGHLIGHT_CHARS,
+          char,
+          bits: char.charCodeAt(0).toString(2).padStart(8, '0'),
+        };
+      });
+
+      let matrixElement = document.getElementById('matrix');
+
+      for (let {highlight, char, bits} of charEntries) {
+        let byteElement = document.createElement('div');
+
+        let charElement = document.createElement('span');
+
+        charElement.className = highlight ? 'char highlight' : 'char';
+        charElement.textContent = char;
+
+        byteElement.appendChild(charElement);
+
+        for (let bit of bits) {
+          let bitElement = document.createElement('span');
+
+          bitElement.className = `fas fa-wheat bit bit-${bit}`;
+
+          byteElement.appendChild(bitElement);
+        }
+
+        matrixElement.appendChild(byteElement);
+      }
+    </script>
+  </body>
+</html>
