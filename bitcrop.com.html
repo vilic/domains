@@ -26,7 +26,6 @@
 
       html {
         height: 100%;
-        background-color: #389e0d;
       }
 
       body {
@@ -54,14 +53,13 @@
       }
 
       #matrix > div > span.char.highlight {
-        color: white;
+        color: #666;
         font-family: monospace;
         font-size: 20px;
       }
 
       #matrix > div > span.char:not(.highlight) {
-        color: black;
-        opacity: 0.3;
+        color: #c0d737;
         font-family: monospace;
         font-size: 16px;
       }
@@ -72,13 +70,11 @@
       }
 
       #matrix > div > span.bit-0 {
-        color: white;
-        opacity: 0.5;
+        color: #c0d737;
       }
 
       #matrix > div > span.bit-1 {
-        color: black;
-        opacity: 0.3;
+        color: #8cac31;
         animation-delay: 0.2s;
       }
 
@@ -90,15 +86,14 @@
         border-radius: 4px;
         font-family: sans-serif;
         font-size: 12px;
-        background-color: black;
-        opacity: 0.3;
-        color: #389e0d;
+        background-color: #c0d737;
+        color: white;
         text-decoration: none;
-        transition: opacity linear 0.2s;
+        transition: background-color linear 0.2s;
       }
 
       #inquiry-link:hover {
-        opacity: 0.5;
+        background-color: #8cac31;
       }
     </style>
   </head>
