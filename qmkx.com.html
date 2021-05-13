@@ -24,101 +24,181 @@
         font-family: sans-serif;
       }
 
-      .letter-box {
-        height: 52px;
-        margin-bottom: 10px;
+      .first-row {
+        display: flex;
+        justify-content: center;
+        align-items: center;
         color: #666;
-        position: relative;;
       }
 
-      .letter-box .letter {
-        display: inline-block;
-        height: 50px;
-        width: 50px;
-        text-align: center;
+      .first-row #letter-box {
         color: #333;
-        border: #eee solid 1px;
-        border-radius: 4px;
-        line-height: 50px;
+        height: 36px;
+        border: 2px solid #e94136;
         position: relative;
-        z-index: 2;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-right: 10px;
+        font-size: 24px;
       }
 
-      .letter-box .letter::before {
-        content: '- - - - -';
-        color: #eee;
+      .first-row #letter-box::before {
+        content: '';
+        height: 1px;
+        width: 100%;
         position: absolute;
-        left: 3px;
-        z-index: -1;
-      }
-      
-      .letter-box .letter::after {
-        content: '- - - - -';
-        writing-mode: vertical-rl;
-        color: #eee;
-        position: absolute;
-        top: 3px;
-        left: 1px;
+        top: 34%;
+        left: 0;
+        background-color: #e94136;
         z-index: -1;
       }
 
-      .letter-box #good-luck-button {
+      .first-row #letter-box::after {
+        content: '';
+        height: 1px;
+        width: 100%;
+        position: absolute;
+        top: 67%;
+        left: 0;
+        background-color: #e94136;
+        z-index: -1;
+      }
+
+      .first-row #letter-box .letter {
         display: inline-block;
-        position: absolute;
-        top: 7px;
-        left: 225px;
-        border: 1px solid #eee;
-        background-color: white;
-        border-radius: 4px;
-        width: 100px;
-        color: #666;
-        text-align: center;
-        line-height: 34px;
+        width: 50px;
+        height: calc(100% - 3px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 1;
+        position: relative;
+        padding-bottom: 3px;
       }
 
-      .letter-box #good-luck-button:hover {
-        cursor:default;
+      .first-row #letter-box .letter::before {
+        content: '';
+        top: 0;
+        bottom: 0;
+        border-left: 2px solid #e94136;
+        position: absolute;
+        left: 100%;
       }
 
       #inquiry-link {
+        margin-left: 10px;
         display: inline-block;
         line-height: 24px;
         border-radius: 4px;
-        width: 50px;
+        width: 80px;
         text-align: center;
         font-family: sans-serif;
         font-size: 12px;
-        background-color: gold;
+        background-color: #666;
         color: white;
         text-decoration: none;
         transition: background-color linear 0.2s;
       }
 
       #inquiry-link:hover {
-        background-color: orange;
+        background-color: #333;
+      }
+
+      #word-box {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #333;
+        border: 2px solid #e94136;
+        top: -2px;
+        width: 200px;
+        font-family: KaiTi, STKaiti;
+        font-size: 30px;
+        font-weight: bold;
+      }
+
+      #word-box::before {
+        content: '';
+        border-top: 1px dashed #e94136;
+        width: 100%;
+        position: absolute;
+        top: 50%;
+      }
+
+      #word-box .letter {
+        display: inline-block;
+        width: 50px;
+        height: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 1;
+        position: relative;
+      }
+
+      #word-box .letter::before {
+        content: '';
+        height: 100%;
+        border-left: 2px solid #e94136;
+        position: absolute;
+        left: 100%;
+        z-index: -1;
+      }
+
+      #word-box .letter::after {
+        content: '';
+        height: 100%;
+        border-left: 1px dashed #e94136;
+        position: absolute;
+        left: 50%;
+        z-index: -1;
+      }
+
+      .second-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        color: #666;
+      }
+
+      #good-luck-button {
+        border: none;
+        background: #e94136;
+        color: white;
+        border-radius: 4px;
+        font-size: 20px;
+        width: 122px;
+        height: 40px;
       }
     </style>
   </head>
   <body>
-    <div>
-      <div class="letter-box">
-        <span class="letter">Q</span>
-        <span class="letter">M</span>
-        <span class="letter">K</span>
-        <span class="letter">X</span>
-        .com
-      </div>
-      <div class="letter-box">
-        <span class="letter"></span>
-        <span class="letter"></span>
-        <span class="letter"></span>
-        <span class="letter"></span>
-        <span id="good-luck-button">试试手气</span>
-      </div>
-      <div id="box">
-        <a id="inquiry-link" href="mailto:vilicvane@live.com?subject=chatin.com">
-          沟通
+    <div class="main">
+      <div class="first-row">
+        <div id="letter-box">
+          <span class="letter">Q</span>
+          <span class="letter">M</span>
+          <span class="letter">K</span>
+          <span class="letter">X</span>
+        </div>
+        <span>.com</span>
+        <a
+          id="inquiry-link"
+          href="mailto:vilicvane+domain@live.com?subject=qmkx.com"
+        >
+          邮件沟通
         </a>
+      </div>
+      <div class="second-row">
+        <div id="word-box">
+          <span class="letter"></span>
+          <span class="letter"></span>
+          <span class="letter"></span>
+          <span class="letter"></span>
+        </div>
+        <button id="good-luck-button">试试手气</button>
       </div>
     </div>
     <script type="module">
@@ -152,11 +232,16 @@
       ];
 
       let button = document.getElementById('good-luck-button');
-      let letterOuterBox = document.getElementsByClassName('letter-box')[1];
-      let letterInnerBoxes = letterOuterBox.getElementsByClassName('letter');
+      let wordOuterBox = document.getElementById('word-box');
+      let wordInnerBoxes = wordOuterBox.getElementsByClassName('letter');
 
-      let interval;
+      let qmIndex = -1;
+      let kxIndex = -1;
+
+      let interval = 50;
       let timer;
+
+      window.addEventListener('load', () => tick());
 
       button.addEventListener('click', () => {
         interval = 50;
@@ -165,9 +250,26 @@
       });
 
       function tick() {
-        const words = QM_WORDS[Math.floor(Math.random() * QM_WORDS.length)].concat(KX_WORDS[Math.floor(Math.random() * KX_WORDS.length)]);
-        for(let index in words) {
-          letterInnerBoxes[index].innerHTML=words[index];
+        let nextQMIndex;
+
+        do {
+          nextQMIndex = Math.floor(Math.random() * QM_WORDS.length);
+        } while (nextQMIndex === qmIndex);
+
+        qmIndex = nextQMIndex;
+
+        let nextKXIndex;
+
+        do {
+          nextKXIndex = Math.floor(Math.random() * KX_WORDS.length);
+        } while (nextKXIndex === kxIndex);
+
+        kxIndex = nextKXIndex;
+
+        const phrase = QM_WORDS[qmIndex] + KX_WORDS[kxIndex];
+
+        for (let index in phrase) {
+          wordInnerBoxes[index].innerHTML = phrase[index];
         }
 
         if (interval >= 500) {
