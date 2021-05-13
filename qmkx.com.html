@@ -9,27 +9,117 @@
       content="全民科学,全民快讯,启蒙科学,亲妈克星,亲妹空虚"
     />
     <title>qmkx.com</title>
-    <style></style>
+    <style>
+      html {
+        height: 100%;
+        margin: 0;
+      }
+
+      body {
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0;
+        font-family: sans-serif;
+      }
+
+      .letter-box {
+        height: 52px;
+        margin-bottom: 10px;
+        color: #666;
+        position: relative;;
+      }
+
+      .letter-box .letter {
+        display: inline-block;
+        height: 50px;
+        width: 50px;
+        text-align: center;
+        color: #333;
+        border: #eee solid 1px;
+        border-radius: 4px;
+        line-height: 50px;
+        position: relative;
+        z-index: 2;
+      }
+
+      .letter-box .letter::before {
+        content: '- - - - -';
+        color: #eee;
+        position: absolute;
+        left: 3px;
+        z-index: -1;
+      }
+      
+      .letter-box .letter::after {
+        content: '- - - - -';
+        writing-mode: vertical-rl;
+        color: #eee;
+        position: absolute;
+        top: 3px;
+        left: 1px;
+        z-index: -1;
+      }
+
+      .letter-box #good-luck-button {
+        display: inline-block;
+        position: absolute;
+        top: 7px;
+        left: 225px;
+        border: 1px solid #eee;
+        background-color: white;
+        border-radius: 4px;
+        width: 100px;
+        color: #666;
+        text-align: center;
+        line-height: 34px;
+      }
+
+      .letter-box #good-luck-button:hover {
+        cursor:default;
+      }
+
+      #inquiry-link {
+        display: inline-block;
+        line-height: 24px;
+        border-radius: 4px;
+        width: 50px;
+        text-align: center;
+        font-family: sans-serif;
+        font-size: 12px;
+        background-color: gold;
+        color: white;
+        text-decoration: none;
+        transition: background-color linear 0.2s;
+      }
+
+      #inquiry-link:hover {
+        background-color: orange;
+      }
+    </style>
   </head>
   <body>
     <div>
-      <div id="domain">
-        <span class="text">
-          <span>Q</span>
-          <span>M</span>
-          <span>K</span>
-          <span>X</span>
-          .com</span
-        >
-        <a id="inquiry-link" href="mailto:vilicvane@live.com?subject=chatin.com"
-          >inquiry</a
-        >
+      <div class="letter-box">
+        <span class="letter">Q</span>
+        <span class="letter">M</span>
+        <span class="letter">K</span>
+        <span class="letter">X</span>
+        .com
       </div>
-      <div id="text-box">
-        <span id="qm-word"></span>
-        <span id="kx-word"></span>
+      <div class="letter-box">
+        <span class="letter"></span>
+        <span class="letter"></span>
+        <span class="letter"></span>
+        <span class="letter"></span>
+        <span id="good-luck-button">试试手气</span>
       </div>
-      <button id="good-luck-button">试试手气</button>
+      <div id="box">
+        <a id="inquiry-link" href="mailto:vilicvane@live.com?subject=chatin.com">
+          沟通
+        </a>
+      </div>
     </div>
     <script type="module">
       const QM_WORDS = [
@@ -62,8 +152,8 @@
       ];
 
       let button = document.getElementById('good-luck-button');
-      let qmWord = document.getElementById('qm-word');
-      let kxWord = document.getElementById('kx-word');
+      let letterOuterBox = document.getElementsByClassName('letter-box')[1];
+      let letterInnerBoxes = letterOuterBox.getElementsByClassName('letter');
 
       let interval;
       let timer;
@@ -75,10 +165,10 @@
       });
 
       function tick() {
-        qmWord.textContent =
-          QM_WORDS[Math.floor(Math.random() * QM_WORDS.length)];
-        kxWord.textContent =
-          KX_WORDS[Math.floor(Math.random() * KX_WORDS.length)];
+        const words = QM_WORDS[Math.floor(Math.random() * QM_WORDS.length)].concat(KX_WORDS[Math.floor(Math.random() * KX_WORDS.length)]);
+        for(let index in words) {
+          letterInnerBoxes[index].innerHTML=words[index];
+        }
 
         if (interval >= 500) {
           return;
