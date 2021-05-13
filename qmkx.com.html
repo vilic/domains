@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="keywords"
+      content="全民科学,全民快讯,启蒙科学,亲妈克星,亲妹空虚"
+    />
+    <title>qmkx.com</title>
+    <style></style>
+  </head>
+  <body>
+    <div>
+      <div id="domain">
+        <span class="text">
+          <span>Q</span>
+          <span>M</span>
+          <span>K</span>
+          <span>X</span>
+          .com</span
+        >
+        <a id="inquiry-link" href="mailto:vilicvane@live.com?subject=chatin.com"
+          >inquiry</a
+        >
+      </div>
+      <div id="text-box">
+        <span id="qm-word"></span>
+        <span id="kx-word"></span>
+      </div>
+      <button id="good-luck-button">试试手气</button>
+    </div>
+    <script type="module">
+      const QM_WORDS = [
+        '全民',
+        '全面',
+        '启蒙',
+        '奇妙',
+        '球迷',
+        '千米',
+        '清明',
+        '巧妙',
+        '亲妈',
+        '亲妹',
+        '取名',
+        '启明',
+        '骑马',
+        '窍门',
+      ];
+      const KX_WORDS = [
+        '科学',
+        '快讯',
+        '快线',
+        '克星',
+        '开心',
+        '凯旋',
+        '狂想',
+        '狂笑',
+        '狂喜',
+        '空虚',
+      ];
+
+      let button = document.getElementById('good-luck-button');
+      let qmWord = document.getElementById('qm-word');
+      let kxWord = document.getElementById('kx-word');
+
+      let interval;
+      let timer;
+
+      button.addEventListener('click', () => {
+        interval = 50;
+        clearTimeout(timer);
+        tick();
+      });
+
+      function tick() {
+        qmWord.textContent =
+          QM_WORDS[Math.floor(Math.random() * QM_WORDS.length)];
+        kxWord.textContent =
+          KX_WORDS[Math.floor(Math.random() * KX_WORDS.length)];
+
+        if (interval >= 500) {
+          return;
+        }
+
+        timer = setTimeout(tick, interval);
+
+        interval *= 1.3;
+      }
+    </script>
+  </body>
+</html>
