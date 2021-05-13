@@ -105,7 +105,7 @@
         background-color: #333;
       }
 
-      #word-box {
+      #char-box {
         position: relative;
         display: flex;
         justify-content: center;
@@ -119,7 +119,7 @@
         font-weight: bold;
       }
 
-      #word-box::before {
+      #char-box::before {
         content: '';
         border-top: 1px dashed #e94136;
         width: 100%;
@@ -127,7 +127,7 @@
         top: 50%;
       }
 
-      #word-box .letter {
+      #char-box .char {
         display: inline-block;
         width: 50px;
         height: 50px;
@@ -138,7 +138,7 @@
         position: relative;
       }
 
-      #word-box .letter::before {
+      #char-box .char::before {
         content: '';
         height: 100%;
         border-left: 2px solid #e94136;
@@ -147,7 +147,7 @@
         z-index: -1;
       }
 
-      #word-box .letter::after {
+      #char-box .char::after {
         content: '';
         height: 100%;
         border-left: 1px dashed #e94136;
@@ -172,6 +172,18 @@
         width: 122px;
         height: 40px;
       }
+
+      #copyright {
+        position: absolute;
+        left: 50%;
+        bottom: 10px;
+        width: 320px;
+        margin-left: -160px;
+        font-family: sans-serif;
+        font-size: 12px;
+        text-align: center;
+        color: #999;
+      }
     </style>
   </head>
   <body>
@@ -192,15 +204,16 @@
         </a>
       </div>
       <div class="second-row">
-        <div id="word-box">
-          <span class="letter"></span>
-          <span class="letter"></span>
-          <span class="letter"></span>
-          <span class="letter"></span>
+        <div id="char-box">
+          <span class="char"></span>
+          <span class="char"></span>
+          <span class="char"></span>
+          <span class="char"></span>
         </div>
         <button id="good-luck-button">试试手气</button>
       </div>
     </div>
+    <div id="copyright">©2021</div>
     <script type="module">
       const QM_WORDS = [
         '全民',
@@ -231,54 +244,67 @@
         '空虚',
       ];
 
+      const INITIAL_INTERVAL = 20;
+      const STOP_INTERVAL = 500;
+      const INTERVAL_MULTIPLIER = 1.2;
+
       let button = document.getElementById('good-luck-button');
-      let wordOuterBox = document.getElementById('word-box');
-      let wordInnerBoxes = wordOuterBox.getElementsByClassName('letter');
+      let charBoxDiv = document.getElementById('char-box');
+      let charSpans = charBoxDiv.getElementsByClassName('char');
 
       let qmIndex = -1;
       let kxIndex = -1;
 
-      let interval = 50;
+      let interval = INITIAL_INTERVAL;
       let timer;
 
       window.addEventListener('load', () => tick());
 
       button.addEventListener('click', () => {
-        interval = 50;
+        interval = INITIAL_INTERVAL;
         clearTimeout(timer);
         tick();
       });
 
-      function tick() {
-        let nextQMIndex;
+      function tick(count = 0) {
+        let word;
+        let charIndexes;
 
-        do {
-          nextQMIndex = Math.floor(Math.random() * QM_WORDS.length);
-        } while (nextQMIndex === qmIndex);
+        if (count % 2 === 0) {
+          let nextQMIndex;
 
-        qmIndex = nextQMIndex;
+          do {
+            nextQMIndex = Math.floor(Math.random() * QM_WORDS.length);
+          } while (nextQMIndex === qmIndex);
 
-        let nextKXIndex;
+          qmIndex = nextQMIndex;
 
-        do {
-          nextKXIndex = Math.floor(Math.random() * KX_WORDS.length);
-        } while (nextKXIndex === kxIndex);
+          word = QM_WORDS[qmIndex];
+          charIndexes = [0, 1];
+        } else {
+          let nextKXIndex;
 
-        kxIndex = nextKXIndex;
+          do {
+            nextKXIndex = Math.floor(Math.random() * KX_WORDS.length);
+          } while (nextKXIndex === kxIndex);
 
-        const phrase = QM_WORDS[qmIndex] + KX_WORDS[kxIndex];
+          kxIndex = nextKXIndex;
 
-        for (let index in phrase) {
-          wordInnerBoxes[index].innerHTML = phrase[index];
+          word = KX_WORDS[kxIndex];
+          charIndexes = [2, 3];
         }
 
-        if (interval >= 500) {
+        for (let [index, charIndex] of charIndexes.entries()) {
+          charSpans[charIndex].innerHTML = word[index];
+        }
+
+        if (interval >= STOP_INTERVAL) {
           return;
         }
 
-        timer = setTimeout(tick, interval);
+        timer = setTimeout(tick, interval, count + 1);
 
-        interval *= 1.3;
+        interval *= INTERVAL_MULTIPLIER;
       }
     </script>
   </body>
