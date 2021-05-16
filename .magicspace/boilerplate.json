@@ -1,0 +1,7 @@
+{
+  "extends": "@mufan/code-boilerplates/general",
+  "options": {
+    "name": "@vimi/domains",
+    "author": "Vilic & Emi"
+  }
+}
