@@ -1,0 +1,93 @@
+<div class="main">
+  <div class="first-row">
+    <div id="letter-box">
+      {{#each letters}}
+      <span class="letter">{{this}}</span>
+      {{/each}}
+    </div>
+    <span>.com</span>
+    <a
+      id="inquiry-link"
+      href="mailto:vilicvane+domain@live.com?subject={{domain}}"
+    >
+      邮件沟通
+    </a>
+  </div>
+  <div class="second-row">
+    <div id="char-box">
+      <span class="char"></span>
+      <span class="char"></span>
+      <span class="char"></span>
+      <span class="char"></span>
+    </div>
+    <button id="good-luck-button">试试手气</button>
+  </div>
+</div>
+<div id="copyright">©2021</div>
+<script type="module">
+  const QM_WORDS = '{{keywordsOne}}'.split(',');
+  const KX_WORDS = '{{keywordsTwo}}'.split(',');
+
+  const INITIAL_INTERVAL = 20;
+  const STOP_INTERVAL = 500;
+  const INTERVAL_MULTIPLIER = 1.2;
+
+  let button = document.getElementById('good-luck-button');
+  let charBoxDiv = document.getElementById('char-box');
+  let charSpans = charBoxDiv.getElementsByClassName('char');
+
+  let qmIndex = -1;
+  let kxIndex = -1;
+
+  let interval = INITIAL_INTERVAL;
+  let timer;
+
+  window.addEventListener('load', () => tick());
+
+  button.addEventListener('click', () => {
+    interval = INITIAL_INTERVAL;
+    clearTimeout(timer);
+    tick();
+  });
+
+  function tick(count = 0) {
+    let word;
+    let charIndexes;
+
+    if (count % 2 === 0) {
+      let nextQMIndex;
+
+      do {
+        nextQMIndex = Math.floor(Math.random() * QM_WORDS.length);
+      } while (nextQMIndex === qmIndex);
+
+      qmIndex = nextQMIndex;
+
+      word = QM_WORDS[qmIndex];
+      charIndexes = [0, 1];
+    } else {
+      let nextKXIndex;
+
+      do {
+        nextKXIndex = Math.floor(Math.random() * KX_WORDS.length);
+      } while (nextKXIndex === kxIndex);
+
+      kxIndex = nextKXIndex;
+
+      word = KX_WORDS[kxIndex];
+      charIndexes = [2, 3];
+    }
+
+    for (let [index, charIndex] of charIndexes.entries()) {
+      charSpans[charIndex].innerHTML = word[index];
+    }
+
+    if (interval >= STOP_INTERVAL) {
+      return;
+    }
+
+    timer = setTimeout(tick, interval, count + 1);
+
+    interval *= INTERVAL_MULTIPLIER;
+  }
+</script>

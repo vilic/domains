@@ -9,5 +9,11 @@
   "trailingComma": "all",
   "bracketSpacing": false,
   "jsxBracketSameLine": false,
-  "arrowParens": "avoid"
+  "arrowParens": "avoid",
+  "overrides": [
+    {
+      "files": "*.handlebars",
+      "options": {"parser": "html"}
+    }
+  ]
 }

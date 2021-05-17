@@ -1,20 +1,16 @@
-<!DOCTYPE html>
 <html lang="en">
   <head>
+    <meta charset="utf-8" />
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta
-      name="keywords"
-      content="全民科学,全民快讯,启蒙科学,亲妈克星,亲妹空虚"
-    />
-    <title>全名科学 | QMKX.com</title>
+    <meta name="keywords" content="{{keywords}}" />
+    <title>{{title}}</title>
     <style>
       html {
         height: 100%;
         margin: 0;
       }
-
       body {
         height: 100%;
         display: flex;
@@ -23,14 +19,12 @@
         margin: 0;
         font-family: sans-serif;
       }
-
       .first-row {
         display: flex;
         justify-content: center;
         align-items: center;
         color: #666;
       }
-
       .first-row #letter-box {
         color: #333;
         height: 36px;
@@ -42,7 +36,6 @@
         margin-right: 10px;
         font-size: 24px;
       }
-
       .first-row #letter-box::before {
         content: '';
         height: 1px;
@@ -53,7 +46,6 @@
         background-color: #e94136;
         z-index: -1;
       }
-
       .first-row #letter-box::after {
         content: '';
         height: 1px;
@@ -64,7 +56,6 @@
         background-color: #e94136;
         z-index: -1;
       }
-
       .first-row #letter-box .letter {
         display: inline-block;
         width: 50px;
@@ -76,7 +67,6 @@
         position: relative;
         padding-bottom: 3px;
       }
-
       .first-row #letter-box .letter::before {
         content: '';
         top: 0;
@@ -85,7 +75,6 @@
         position: absolute;
         left: 100%;
       }
-
       #inquiry-link {
         margin-left: 10px;
         display: inline-block;
@@ -100,11 +89,9 @@
         text-decoration: none;
         transition: background-color linear 0.2s;
       }
-
       #inquiry-link:hover {
         background-color: #333;
       }
-
       #char-box {
         position: relative;
         display: flex;
@@ -118,7 +105,6 @@
         font-size: 30px;
         font-weight: bold;
       }
-
       #char-box::before {
         content: '';
         border-top: 1px dashed #e94136;
@@ -126,7 +112,6 @@
         position: absolute;
         top: 50%;
       }
-
       #char-box .char {
         display: inline-block;
         width: 50px;
@@ -137,7 +122,6 @@
         z-index: 1;
         position: relative;
       }
-
       #char-box .char::before {
         content: '';
         height: 100%;
@@ -146,7 +130,6 @@
         left: 100%;
         z-index: -1;
       }
-
       #char-box .char::after {
         content: '';
         height: 100%;
@@ -155,14 +138,12 @@
         left: 50%;
         z-index: -1;
       }
-
       .second-row {
         display: flex;
         justify-content: space-between;
         align-items: center;
         color: #666;
       }
-
       #good-luck-button {
         border: none;
         background: #e94136;
@@ -172,7 +153,6 @@
         width: 122px;
         height: 40px;
       }
-
       #copyright {
         position: absolute;
         left: 50%;
@@ -187,125 +167,6 @@
     </style>
   </head>
   <body>
-    <div class="main">
-      <div class="first-row">
-        <div id="letter-box">
-          <span class="letter">Q</span>
-          <span class="letter">M</span>
-          <span class="letter">K</span>
-          <span class="letter">X</span>
-        </div>
-        <span>.com</span>
-        <a
-          id="inquiry-link"
-          href="mailto:vilicvane+domain@live.com?subject=qmkx.com"
-        >
-          邮件沟通
-        </a>
-      </div>
-      <div class="second-row">
-        <div id="char-box">
-          <span class="char"></span>
-          <span class="char"></span>
-          <span class="char"></span>
-          <span class="char"></span>
-        </div>
-        <button id="good-luck-button">试试手气</button>
-      </div>
-    </div>
-    <div id="copyright">©2021</div>
-    <script type="module">
-      const QM_WORDS = [
-        '全民',
-        '全面',
-        '启蒙',
-        '奇妙',
-        '球迷',
-        '千米',
-        '清明',
-        '巧妙',
-        '亲妈',
-        '亲妹',
-        '取名',
-        '启明',
-        '骑马',
-        '窍门',
-      ];
-      const KX_WORDS = [
-        '科学',
-        '快讯',
-        '快线',
-        '克星',
-        '开心',
-        '凯旋',
-        '狂想',
-        '狂笑',
-        '狂喜',
-        '空虚',
-      ];
-
-      const INITIAL_INTERVAL = 20;
-      const STOP_INTERVAL = 500;
-      const INTERVAL_MULTIPLIER = 1.2;
-
-      let button = document.getElementById('good-luck-button');
-      let charBoxDiv = document.getElementById('char-box');
-      let charSpans = charBoxDiv.getElementsByClassName('char');
-
-      let qmIndex = -1;
-      let kxIndex = -1;
-
-      let interval = INITIAL_INTERVAL;
-      let timer;
-
-      window.addEventListener('load', () => tick());
-
-      button.addEventListener('click', () => {
-        interval = INITIAL_INTERVAL;
-        clearTimeout(timer);
-        tick();
-      });
-
-      function tick(count = 0) {
-        let word;
-        let charIndexes;
-
-        if (count % 2 === 0) {
-          let nextQMIndex;
-
-          do {
-            nextQMIndex = Math.floor(Math.random() * QM_WORDS.length);
-          } while (nextQMIndex === qmIndex);
-
-          qmIndex = nextQMIndex;
-
-          word = QM_WORDS[qmIndex];
-          charIndexes = [0, 1];
-        } else {
-          let nextKXIndex;
-
-          do {
-            nextKXIndex = Math.floor(Math.random() * KX_WORDS.length);
-          } while (nextKXIndex === kxIndex);
-
-          kxIndex = nextKXIndex;
-
-          word = KX_WORDS[kxIndex];
-          charIndexes = [2, 3];
-        }
-
-        for (let [index, charIndex] of charIndexes.entries()) {
-          charSpans[charIndex].innerHTML = word[index];
-        }
-
-        if (interval >= STOP_INTERVAL) {
-          return;
-        }
-
-        timer = setTimeout(tick, interval, count + 1);
-
-        interval *= INTERVAL_MULTIPLIER;
-      }
-    </script>
+    {{{body}}}
   </body>
 </html>
