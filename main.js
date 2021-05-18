@@ -1,5 +1,7 @@
 const Path = require('path');
 
+const fs = require('fs');
+
 const express = require('express');
 
 const expressHandlebars = require('express-handlebars');
@@ -24,7 +26,18 @@ app.get('/', (req, res) => {
     return;
   }
 
-  res.sendFile(Path.join(__dirname, 'static', `${domain}.html`));
+  const domainPath = Path.join(__dirname, 'static', `${domain}.html`);
+  fs.access(domainPath, fs.constants.F_OK, error => {
+    if (error) {
+      res.render('other-domain', {
+        domain,
+        keywords: '',
+        title: domain,
+      });
+    } else {
+      res.sendFile(domainPath);
+    }
+  });
 });
 
 app.listen(port, () => {
