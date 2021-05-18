@@ -21,7 +21,7 @@ app.get('/', (req, res) => {
 
   domain = domain.replace(/^www\./, '');
 
-  if (domain === 'qmkx.com') {
+  if (domain === 'qmkx.com' || domain === 'ryzj.com' || domain === 'bysb.com') {
     res.render('quad-word-domain', data.data[domain]);
     return;
   }
