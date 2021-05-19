@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="keywords" content="8bits, bit, byte" />
+    <meta name="description" content="" />
+    <title>8bits.com</title>
+    <script
+      src="https://kit.fontawesome.com/ec16656391.js"
+      crossorigin="anonymous"
+    ></script>
+    <style>
+      html {
+        height: 100%;
+        font-family: sans-serif;
+        letter-spacing: 1px;
+      }
+
+      body {
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0;
+      }
+
+      #bit-to-byte {
+        margin-top: 15px;
+        font-size: 18px;
+        display: flex;
+        justify-content: center;
+        align-items: flex-end;
+      }
+
+      #bit,
+      #byte {
+        min-width: 40px;
+        color: #333;
+        border: none;
+        border-bottom: 4px solid #ccc;
+        font-size: 64px;
+        text-align: center;
+      }
+
+      #bit:focus,
+      #byte:focus {
+        border: none;
+        outline: none;
+        border-bottom: 4px solid #3997ed;
+      }
+
+      #equal {
+        font-size: 48px;
+        color: #ccc;
+        margin: 0 16px;
+      }
+
+      #bit-text,
+      #byte-text {
+        display: inline-block;
+        font-size: 20px;
+        margin-left: 8px;
+        color: #999;
+        margin-bottom: -8px;
+      }
+
+      #copyright {
+        position: absolute;
+        left: 50%;
+        bottom: 10px;
+        width: 320px;
+        margin-left: -160px;
+        font-family: sans-serif;
+        font-size: 12px;
+        text-align: center;
+        color: #999;
+      }
+
+      #inquiry-link {
+        color: #999;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="box">
+      <div id="bit-to-byte">
+        <input id="bit" type="text" value="8" />
+        <span id="bit-text">bits</span>
+        <span id="equal">=</span>
+        <input id="byte" type="text" value="1" />
+        <span id="byte-text">byte</span>
+      </div>
+    </div>
+    <div id="copyright">
+      ©
+      <a
+        id="inquiry-link"
+        href="mailto:vilicvane+domain@live.com?subject=8bits.com"
+        >8bits.com</a
+      >
+    </div>
+    <script type="module">
+      let bitInput = document.getElementById('bit');
+      let byteInput = document.getElementById('byte');
+      let bitText = document.getElementById('bit-text');
+      let byteText = document.getElementById('byte-text');
+
+      function setInputWidth() {
+        bitInput.style.width = '0px';
+        bitInput.style.width = bitInput.scrollWidth + 'px';
+        byteInput.style.width = '0px';
+        byte.style.width = byteInput.scrollWidth + 'px';
+      }
+
+      function setInputLabel(bit, byte) {
+        let bitText = 'bit';
+        let byteText = 'byte';
+        if (bit > 0) {
+          bitText = 'bits';
+        }
+        if (byte > 0) {
+          byteText = 'bytes';
+        }
+        bitText.innerHTML = bitText;
+        byteText.innerHTML = byteText;
+      }
+
+      setInputWidth();
+
+      bitInput.addEventListener('keypress', event => {
+        if (event.keyCode === 13) {
+          bitInput.blur();
+        }
+      });
+
+      byteInput.addEventListener('keypress', event => {
+        if (event.keyCode === 13) {
+          byteInput.blur();
+        }
+      });
+
+      bitInput.addEventListener('input', event => {
+        bitInput.style.width = '0px';
+        bitInput.style.width = bitInput.scrollWidth + 'px';
+      });
+
+      byteInput.addEventListener('input', event => {
+        byteInput.style.width = '0px';
+        byte.style.width = byteInput.scrollWidth + 'px';
+      });
+
+      bitInput.addEventListener('blur', event => {
+        let bit = 8;
+        let byte = 1;
+        const value = Number(event.target.value);
+
+        if (!isNaN(value)) {
+          bit = Math.round(Math.max(value, 0) / 8) * 8;
+          byte = bit / 8;
+        }
+
+        bitInput.value = bit;
+        byteInput.value = byte;
+
+        setInputWidth();
+        setInputLabel(bit, byte);
+      });
+
+      byteInput.addEventListener('blur', event => {
+        let bit = 8;
+        let byte = 1;
+        const value = Number(event.target.value);
+
+        if (!isNaN(value)) {
+          byte = Math.round(Math.max(value, 0));
+          bit = byte * 8;
+        }
+
+        bitInput.value = bit;
+        byteInput.value = byte;
+
+        setInputWidth();
+        setInputLabel(bit, byte);
+      });
+    </script>
+  </body>
+</html>
