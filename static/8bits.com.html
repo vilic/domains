@@ -4,9 +4,12 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="keywords" content="8bits, bit, byte" />
+    <meta
+      name="keywords"
+      content="8bits,bit,byte,bit byte converter, byte convert to bits"
+    />
     <meta name="description" content="" />
-    <title>8bits.com</title>
+    <title>Bit Byte Converter ｜ 8bits.com</title>
     <script
       src="https://kit.fontawesome.com/ec16656391.js"
       crossorigin="anonymous"
@@ -42,6 +45,7 @@
         border-bottom: 4px solid #ccc;
         font-size: 64px;
         text-align: center;
+        border-radius: 0;
       }
 
       #bit:focus,
@@ -104,8 +108,8 @@
     <script type="module">
       let bitInput = document.getElementById('bit');
       let byteInput = document.getElementById('byte');
-      let bitText = document.getElementById('bit-text');
-      let byteText = document.getElementById('byte-text');
+      let bitTextBox = document.getElementById('bit-text');
+      let byteTextBox = document.getElementById('byte-text');
 
       function setInputWidth() {
         bitInput.style.width = '0px';
@@ -123,8 +127,8 @@
         if (byte > 0) {
           byteText = 'bytes';
         }
-        bitText.innerHTML = bitText;
-        byteText.innerHTML = byteText;
+        bitTextBox.innerHTML = bitText;
+        byteTextBox.innerHTML = byteText;
       }
 
       setInputWidth();
