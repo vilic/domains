@@ -1,5 +1,7 @@
 #!/bin/bash
 
+source .env
+
 for domain in $(cat domains.txt)
 do
   echo Domain $domain
